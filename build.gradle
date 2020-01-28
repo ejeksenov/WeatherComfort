@@ -8,6 +8,7 @@ buildscript {
         retrofitVersion = RETROFIT_VERSION
         roomVersion = ROOM_VERSION
         okhttp3LogInterceptor = OKHTTP3LOGINTERCEPTOR_VERSION
+        nav_version = NAV_VERSION
     }
     repositories {
         google()
