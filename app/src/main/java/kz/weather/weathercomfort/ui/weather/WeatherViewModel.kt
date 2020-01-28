@@ -1,7 +1,6 @@
 package kz.weather.weathercomfort.ui.weather
 
-import androidx.lifecycle.ViewModel
-import kz.weather.domain.interaction.GetLocationInfoUseCase
+import kz.weather.domain.interaction.location.GetLocationInfoUseCase
 import kz.weather.domain.model.LocationInfo
 import kz.weather.domain.model.onFailure
 import kz.weather.domain.model.onSuccess

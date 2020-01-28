@@ -1,5 +1,6 @@
-package kz.weather.domain.interaction
+package kz.weather.domain.interaction.location
 
+import kz.weather.domain.interaction.location.GetLocationInfoUseCase
 import kz.weather.domain.model.LocationInfo
 import kz.weather.domain.model.Result
 import kz.weather.domain.repository.LocationInfoRepository

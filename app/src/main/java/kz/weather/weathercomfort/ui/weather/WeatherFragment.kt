@@ -52,10 +52,6 @@ class WeatherFragment : BaseFragment() {
         }
     }
 
-    fun getLocationDataInfo(location: String) {
-        viewModel.getLocationData(location)
-    }
-
     private fun handleError(error: String) {
         hideLoading(weatherFragmentBinding.weatherLoadingProgress)
         showError(error, weatherFragmentBinding.accuWeatherContainer)
