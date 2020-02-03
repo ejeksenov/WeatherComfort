@@ -1,7 +1,7 @@
 package kz.weather.weathercomfort
 
 import android.app.Application
-import kz.weather.comfort.di.presentationModule
+import kz.weather.weathercomfort.di.presentationModule
 import kz.weather.data.di.databaseModule
 import kz.weather.data.di.networkingModule
 import kz.weather.data.di.repositoryModule
@@ -30,8 +30,8 @@ class App : Application() {
             modules(appModules + domainModules + dataModules)
         }
     }
-
-    val appModules = listOf(presentationModule, appModule)
-    val domainModules = listOf(interactionModule)
-    val dataModules = listOf(networkingModule, repositoryModule, databaseModule)
 }
+
+val appModules = listOf(presentationModule, appModule)
+val domainModules = listOf(interactionModule)
+val dataModules = listOf(networkingModule, repositoryModule, databaseModule)

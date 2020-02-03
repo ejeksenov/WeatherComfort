@@ -9,7 +9,7 @@ import kz.weather.weathercomfort.utils.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-abstract class BaseViewModel<T : Any> : ViewModel(), KoinComponent {
+abstract class BaseViewModel<T : Any, R: Any> : ViewModel(), KoinComponent {
 
     protected val coroutineContext: CoroutineContextProvider by inject()
     private val connectivity: Connectivity by inject()
@@ -18,8 +18,13 @@ abstract class BaseViewModel<T : Any> : ViewModel(), KoinComponent {
     val viewState: LiveData<ViewState<T>>
         get() = _viewState
 
+    protected val _viewData = MutableLiveData<ViewState<R>>()
+    val viewData: LiveData<ViewState<R>>
+        get() = _viewData
+
     protected fun executeUseCase(action: suspend () -> Unit, noInternetAction: () -> Unit) {
         _viewState.value = Loading()
+        _viewData.value = Loading()
         if (connectivity.hasNetworkAccess()) {
             launch { action() }
         } else {
@@ -29,6 +34,7 @@ abstract class BaseViewModel<T : Any> : ViewModel(), KoinComponent {
 
     protected fun executeUseCase(action: suspend () -> Unit) {
         _viewState.value = Loading()
+        _viewData.value = Loading()
         launch { action() }
     }
 }

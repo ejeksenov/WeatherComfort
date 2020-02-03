@@ -1,4 +1,4 @@
-package kz.weather.data.database
+package kz.weather.data.database.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

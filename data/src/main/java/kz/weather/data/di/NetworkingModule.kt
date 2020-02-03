@@ -2,6 +2,7 @@ package kz.weather.data.di
 
 import kz.weather.data.BuildConfig
 import kz.weather.data.networking.LocationInfoApi
+import kz.weather.data.networking.Weather12HourlyForecastApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,5 +33,8 @@ val networkingModule = module {
     }
     single {
         get<Retrofit>().create(LocationInfoApi::class.java)
+    }
+    single {
+        get<Retrofit>().create(Weather12HourlyForecastApi::class.java)
     }
 }

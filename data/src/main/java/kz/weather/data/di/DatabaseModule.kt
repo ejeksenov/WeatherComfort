@@ -2,6 +2,7 @@ package kz.weather.data.di
 
 import androidx.room.Room
 import kz.weather.data.database.LocationDatabase
+import kz.weather.data.database.Weather12HourlyForecastDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -13,5 +14,9 @@ val databaseModule = module {
         //TODO remove fallbackToDestructiveMigration when this goes to production
         Room.databaseBuilder(androidContext(), LocationDatabase::class.java, LOCATION_DATA_DB).fallbackToDestructiveMigration().build()
     }
+    single {
+        Room.databaseBuilder(androidContext(), Weather12HourlyForecastDatabase::class.java, WEATHER_INFO_DB).fallbackToDestructiveMigration().build()
+    }
     factory { get<LocationDatabase>().locationDataDao() }
+    factory { get<Weather12HourlyForecastDatabase>().weather12HourlyForecastDao() }
 }
