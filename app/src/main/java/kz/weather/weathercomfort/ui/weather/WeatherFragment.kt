@@ -43,7 +43,7 @@ class WeatherFragment : BaseFragment() {
 
     private fun subscribeToData() {
         viewModel.viewState.subscribe(this, ::handleViewState)
-        viewModel.viewData.subscribe(viewLifecycleOwner, ::handleViewData)
+        viewModel.viewData.subscribe(this, ::handleViewData)
     }
 
     private fun handleViewState(viewState: ViewState<LocationInfo>) {

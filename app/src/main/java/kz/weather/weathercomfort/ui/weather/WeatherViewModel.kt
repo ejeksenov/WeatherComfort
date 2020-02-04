@@ -1,7 +1,7 @@
 package kz.weather.weathercomfort.ui.weather
 
 import kz.weather.domain.interaction.location.GetLocationInfoUseCase
-import kz.weather.domain.interaction.weather.GetWeather12HourlyForecastUseCase
+import kz.weather.domain.interaction.hourly.GetWeather12HourlyForecastUseCase
 import kz.weather.domain.model.*
 import kz.weather.weathercomfort.ui.base.BaseViewModel
 import kz.weather.weathercomfort.ui.base.Error
