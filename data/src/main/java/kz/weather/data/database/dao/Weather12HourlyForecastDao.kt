@@ -1,7 +1,7 @@
 package kz.weather.data.database.dao
 
 import androidx.room.*
-import kz.weather.data.database.WEATHER_TABLE_NAME
+import kz.weather.data.database.WEATHER_HOURLY_FORECAST_TABLE_NAME
 import kz.weather.data.database.model.Weather12HourlyForecastEntity
 
 @Dao
@@ -16,7 +16,7 @@ interface Weather12HourlyForecastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveWeatherData(weather12HourlyForecastEntityList: List<Weather12HourlyForecastEntity>)
 
-    @Query("SELECT * FROM $WEATHER_TABLE_NAME LIMIT 1")
+    @Query("SELECT * FROM $WEATHER_HOURLY_FORECAST_TABLE_NAME LIMIT 1")
     suspend fun getWeatherData(): List<Weather12HourlyForecastEntity>
 
 }

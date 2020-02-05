@@ -1,4 +1,4 @@
-package kz.weather.domain.interaction.weather
+package kz.weather.domain.interaction.hourly
 
 import kz.weather.domain.base.BaseUseCase
 import kz.weather.domain.model.Result

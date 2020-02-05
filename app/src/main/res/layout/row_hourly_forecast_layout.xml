@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowHourlyForecastLayout"
+    android:orientation="vertical"
+    android:layout_width="72dp"
+    android:gravity="center_horizontal"
+    android:layout_height="154dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    >
+
+    <TextView
+        android:id="@+id/tvHourlyForecastTime"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        tools:text="13:00"
+        android:textColor="@android:color/white"/>
+
+    <ImageView
+        android:id="@+id/ivHourlyForecastIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ic_cloud_white"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvHourlyForecastHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        tools:text="90%"
+        android:drawableStart="@drawable/ic_drop"
+        android:drawablePadding="4dp"
+        android:textColor="@color/whiteOpacity35"/>
+
+    <TextView
+        android:id="@+id/tvHourlyForecastTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        tools:text = "3˚"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>
+</layout>
