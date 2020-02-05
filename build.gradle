@@ -11,6 +11,7 @@ buildscript {
         nav_version = NAV_VERSION
     }
     repositories {
+        mavenCentral()
         google()
         jcenter()
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowDailyForecastLayout"
+    android:orientation="vertical"
+    android:layout_width="80dp"
+    android:layout_height="216dp"
+    android:gravity="center_horizontal"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
+
+    <TextView
+        android:id="@+id/tvDailyForecastDate"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="@android:color/white"
+        android:textAllCaps="true"
+        tools:text="Feb 25"/>
+
+    <ImageView
+        android:id="@+id/ivDailyForecastDayIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ic_cloud_white"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvDailyForecastDayTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        tools:text="-5˚"/>
+
+    <ImageView
+        android:id="@+id/ivDailyForecastNightIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ic_cloud_white"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvDailyForecastNightTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"
+        tools:text="-9˚"/>
+
+
+</LinearLayout>
+</layout>

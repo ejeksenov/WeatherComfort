@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/rowWeatherDetailedInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/tvWeatherDetailedInfoName"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            tools:text="Humidity" />
+
+        <TextView
+            android:id="@+id/tvWeatherDetailedInfoValue"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            tools:text="58%" />
+
+
+    </RelativeLayout>
+
+</layout>
