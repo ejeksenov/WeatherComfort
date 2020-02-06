@@ -11,6 +11,11 @@
         tools:context=".ui.weather.WeatherFragment"
         android:padding="8dp">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srWeatherFragmentRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/svWeatherFragmentScroll"
             android:layout_width="match_parent"
@@ -28,8 +33,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/top_layout_height"
                     android:orientation="vertical"
-                    android:paddingTop="60dp"
-                    android:paddingBottom="60dp"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="30dp"
                     android:gravity="center_horizontal">
@@ -155,6 +160,7 @@
 
 
         </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <LinearLayout
             android:id="@+id/layoutWeatherFragmentTop"
@@ -184,12 +190,13 @@
 
         </LinearLayout>
 
-        <ProgressBar
+        <!--<ProgressBar
             android:id="@+id/weatherLoadingProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone" />
+            android:indeterminateTint="@android:color/white"
+            android:visibility="gone" />-->
 
     </RelativeLayout>
 
