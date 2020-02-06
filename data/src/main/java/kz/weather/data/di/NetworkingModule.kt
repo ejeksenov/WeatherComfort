@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "http://dataservice.accuweather.com/"
-const val API_KEY = "J8l7kWdGBm8k5igTWhesVAcSNBblxm4o"
+const val API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 val networkingModule = module {
     single { GsonConverterFactory.create() as Converter.Factory }
