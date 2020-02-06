@@ -1,16 +1,21 @@
 package kz.weather.weathercomfort.ui.weather
 
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.location.*
 import com.squareup.picasso.Picasso
 import kz.weather.domain.model.LocationInfo
 import kz.weather.domain.model.Weather12HourlyForecast
@@ -38,6 +43,10 @@ class WeatherFragment : BaseFragment() {
     private lateinit var weatherDetailedInfoAdapter: WeatherDetailedInfoAdapter
 
     private val weatherDetailedInfoHashMap: HashMap<String, String> = HashMap()
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationCallback: LocationCallback
+    private lateinit var locationRequest: LocationRequest
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,7 +97,11 @@ class WeatherFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToData()
-        viewModel.getLocationData()
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
+
+        getLocationUpdates()
+
         weatherFragmentBinding.svWeatherFragmentScroll.viewTreeObserver.addOnScrollChangedListener(
             ScrollPositionObserver()
         )
@@ -96,6 +109,7 @@ class WeatherFragment : BaseFragment() {
         weatherFragmentBinding.srWeatherFragmentRefresh.setOnRefreshListener {
             viewModel.getLocationData()
         }
+
     }
 
     private fun subscribeToData() {
@@ -199,6 +213,68 @@ class WeatherFragment : BaseFragment() {
         viewModel.getWeatherHourlyInfo(locationKey)
         viewModel.getWeatherDailyInfo(locationKey)
     }
+
+    private fun getLocationUpdates() {
+        showLoading(weatherFragmentBinding.weatherLoadingProgress)
+        locationRequest = LocationRequest()
+        locationRequest.interval = 50000
+        locationRequest.fastestInterval = 50000
+        locationRequest.smallestDisplacement = 170f // 170 m = 0.1 mile
+        locationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+                for (location in locationResult.locations) {
+                    if (location != null) {
+                        locationStr = "${location.latitude},${location.longitude}"
+                        viewModel.getLocationData(locationStr)
+                        hideLoading(weatherFragmentBinding.weatherLoadingProgress)
+                    } else {
+                        snackbar(
+                            getString(R.string.location_error),
+                            weatherFragmentBinding.accuWeatherContainer
+                        )
+                        hideLoading(weatherFragmentBinding.weatherLoadingProgress)
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    //start location updates
+    private fun startLocationUpdates() {
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            null /* Looper */
+        )
+    }
+
+    // stop location updates
+    private fun stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdates()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val permissionAccessCoarseLocationApproved = ActivityCompat
+            .checkSelfPermission(context!!, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED
+
+        if (permissionAccessCoarseLocationApproved)
+            startLocationUpdates()
+        else
+            ActivityCompat.requestPermissions(activity!!,arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), 100)
+    }
+
 
 
     private inner class ScrollPositionObserver : ViewTreeObserver.OnScrollChangedListener {

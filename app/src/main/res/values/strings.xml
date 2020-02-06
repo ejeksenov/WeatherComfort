@@ -4,4 +4,5 @@
     <string name="hourly">Hourly</string>
     <string name="daily">Daily</string>
     <string name="detailed">Detailed</string>
+    <string name="location_error">Cannot get current location:(</string>
 </resources>
