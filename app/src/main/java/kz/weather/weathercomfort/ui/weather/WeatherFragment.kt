@@ -26,6 +26,7 @@ class WeatherFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = WeatherFragment()
+        var locationStr = DEFAULT_CITY_LOCATION
     }
 
     private lateinit var weatherFragmentBinding: WeatherFragmentBinding
@@ -91,6 +92,10 @@ class WeatherFragment : BaseFragment() {
         weatherFragmentBinding.svWeatherFragmentScroll.viewTreeObserver.addOnScrollChangedListener(
             ScrollPositionObserver()
         )
+
+        weatherFragmentBinding.srWeatherFragmentRefresh.setOnRefreshListener {
+            viewModel.getLocationData()
+        }
     }
 
     private fun subscribeToData() {
@@ -170,11 +175,13 @@ class WeatherFragment : BaseFragment() {
     }
 
     private fun handleError(error: String) {
+        weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = false
         hideLoading(weatherFragmentBinding.weatherLoadingProgress)
         showError(error, weatherFragmentBinding.accuWeatherContainer)
     }
 
     private fun showNoInternetError() {
+        weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = false
         hideLoading(weatherFragmentBinding.weatherLoadingProgress)
         snackbar(
             getString(R.string.no_internet_error_message),

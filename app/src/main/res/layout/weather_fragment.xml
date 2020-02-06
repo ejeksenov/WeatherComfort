@@ -11,6 +11,11 @@
         tools:context=".ui.weather.WeatherFragment"
         android:padding="8dp">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srWeatherFragmentRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/svWeatherFragmentScroll"
             android:layout_width="match_parent"
@@ -155,6 +160,7 @@
 
 
         </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <LinearLayout
             android:id="@+id/layoutWeatherFragmentTop"
