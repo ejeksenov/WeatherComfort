@@ -120,7 +120,7 @@ class WeatherFragment : BaseFragment() {
 
     private fun handleViewState(viewState: ViewState<LocationInfo>) {
         when (viewState) {
-            is Loading -> weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = true//showLoading(weatherFragmentBinding.weatherLoadingProgress)
+            is Loading -> weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = true
             is Success -> getLocationKey(viewState.data)
             is Error -> handleError(viewState.error.localizedMessage!!)
             is NoInternetState -> showNoInternetError()
@@ -129,7 +129,7 @@ class WeatherFragment : BaseFragment() {
 
     private fun handleViewData(viewData: ViewState<List<Weather12HourlyForecast>>) {
         when (viewData) {
-            is Loading -> weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = true//showLoading(weatherFragmentBinding.weatherLoadingProgress)
+            is Loading -> weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = true
             is Success -> showWeatherDataInfo(viewData.data)
             is Error -> handleError(viewData.error.localizedMessage!!)
             is NoInternetState -> showNoInternetError()
@@ -138,7 +138,7 @@ class WeatherFragment : BaseFragment() {
 
     private fun handleViewDataInfo(viewDataInfo: ViewState<Weather5DaysForecast>) {
         when (viewDataInfo) {
-            is Loading -> weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = true//showLoading(weatherFragmentBinding.weatherLoadingProgress)
+            is Loading -> weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = true
             is Success -> showWeatherDailyDataInfo(viewDataInfo.data)
             is Error -> handleError(viewDataInfo.error.localizedMessage!!)
             is NoInternetState -> showNoInternetError()
@@ -147,7 +147,6 @@ class WeatherFragment : BaseFragment() {
 
     private fun showWeatherDailyDataInfo(weather5DaysForecast: Weather5DaysForecast) {
         weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = false
-        //hideLoading(weatherFragmentBinding.weatherLoadingProgress)
         val dataList = weather5DaysForecast.dailyForecasts
         if (dataList.isNotEmpty()) {
             dailyForecastAdapter.updateDailyForecast(dataList)
@@ -164,7 +163,6 @@ class WeatherFragment : BaseFragment() {
 
     private fun showWeatherDataInfo(dataList: List<Weather12HourlyForecast>) {
         weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = false
-//        hideLoading(weatherFragmentBinding.weatherLoadingProgress)
         if (dataList.isNotEmpty()) {
             val weatherHourItem = dataList[0]
             weatherFragmentBinding.tvWeatherFragmentTemperature.text = weatherHourItem.temperature
@@ -192,13 +190,11 @@ class WeatherFragment : BaseFragment() {
 
     private fun handleError(error: String) {
         weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = false
-        //hideLoading(weatherFragmentBinding.weatherLoadingProgress)
         showError(error, weatherFragmentBinding.accuWeatherContainer)
     }
 
     private fun showNoInternetError() {
         weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = false
-        //hideLoading(weatherFragmentBinding.weatherLoadingProgress)
         snackbar(
             getString(R.string.no_internet_error_message),
             weatherFragmentBinding.accuWeatherContainer
@@ -218,10 +214,9 @@ class WeatherFragment : BaseFragment() {
 
     private fun getLocationUpdates() {
         weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = true
-        //showLoading(weatherFragmentBinding.weatherLoadingProgress)
         locationRequest = LocationRequest()
-        locationRequest.interval = 50000
-        locationRequest.fastestInterval = 50000
+        locationRequest.interval = 600000
+        locationRequest.fastestInterval = 600000
         locationRequest.smallestDisplacement = 170f // 170 m = 0.1 mile
         locationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
         locationCallback = object : LocationCallback() {
@@ -231,13 +226,11 @@ class WeatherFragment : BaseFragment() {
                     if (location != null) {
                         locationStr = "${location.latitude},${location.longitude}"
                         viewModel.getLocationData(locationStr)
-                        //hideLoading(weatherFragmentBinding.weatherLoadingProgress)
                     } else {
                         snackbar(
                             getString(R.string.location_error),
                             weatherFragmentBinding.accuWeatherContainer
                         )
-                        //hideLoading(weatherFragmentBinding.weatherLoadingProgress)
                     }
                     weatherFragmentBinding.srWeatherFragmentRefresh.isRefreshing = false
                 }
