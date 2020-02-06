@@ -24,6 +24,6 @@ data class Weather12HourlyForecastEntity(
         return Weather12HourlyForecast(
             changeDateFormatToTime(dateTime), getImageFormat(weatherIcon ?: 0), iconPhrase ?: "",
             "${temperature.value.roundToInt()}°", "${realFeelTemperature.value.roundToInt()}°", "${wind.speed.value} ${wind.speed.unit}",
-            relativeHumidity.toString(), uviIndexText ?: "", mobileLink ?: "")
+            "$relativeHumidity%", uviIndexText ?: "", mobileLink ?: "")
     }
 }

@@ -50,7 +50,7 @@ class WeatherHourlyForecastAdapter: RecyclerView.Adapter<WeatherHourlyForecastAd
 
         fun bind(weather12HourlyForecast: Weather12HourlyForecast) {
 
-            tvHourlyForecastHumidity.text = "${weather12HourlyForecast.relativeHumidity}%"
+            tvHourlyForecastHumidity.text = weather12HourlyForecast.relativeHumidity
             tvHourlyForecastTemperature.text = weather12HourlyForecast.temperature
             tvHourlyForecastTime.text = weather12HourlyForecast.dateTime
             Picasso.get().load(weather12HourlyForecast.weatherIcon).fit().centerCrop().error(R.drawable.ic_broken_image_white).into(ivHourlyForecastIcon)
