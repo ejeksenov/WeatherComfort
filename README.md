@@ -6,11 +6,11 @@ A simple Weather app built to learn how to write Clean Architecture code by soli
 
   This project was written by solid principles of Clean Architecture and divided into three layers:
   
-  1.Data layer contains Local Storage, APIs, Data objects (Request/Response object, DB objects), and the repository implementation.
+  1. Data layer contains Local Storage, APIs, Data objects (Request/Response object, DB objects), and the repository implementation.
   
-  2.Domain layer contains UseCases, Domain Objects/Models (Pojos/Kotlin Data Classes), and Repository Interfaces.
+  2. Domain layer contains UseCases, Domain Objects/Models (Pojos/Kotlin Data Classes), and Repository Interfaces.
   
-  3.Presentation layer contains UI, View Objects, Android components, etc. This layer implemented MVVM and used Koin for dependency injection.
+  3. Presentation layer contains UI, View Objects, Android components, etc. This layer implemented MVVM and used Koin for dependency injection.
   
   ![](weather_comfort.gif)
 
