@@ -25,7 +25,7 @@ A simple Weather app built to learn how to write Clean Architecture code by soli
 
 ### Api Reference
 Used AccuWeather Api to fetch datas:
-1. Geoposition Search by GeoPosition (Latitude and Longitude) to get the locationKey.
+1. Geoposition Search by Latitude and Longitude to get the locationKey.
 2. Get 12 Hours of Hourly Forecasts by locationKey.
 3. Get 5 Days of Daily Forecasts by locationKey.
 
